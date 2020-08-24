@@ -1849,7 +1849,10 @@ class MaskRCNN():
         print("KERAS Model")
         print("-----------")
         print(mode)
-        print(config)
+        print(config.IMAGE_SHAPE)
+        print(config.IMAGE_META_SIZE)
+        print(config.USE_MINI_MASK)
+        print(config.IMAGE_MAX_DIM)
         self.keras_model = self.build(mode=mode, config=config)
 
     def build(self, mode, config):
