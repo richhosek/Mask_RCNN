@@ -1845,6 +1845,11 @@ class MaskRCNN():
         self.config = config
         self.model_dir = model_dir
         self.set_log_dir()
+        print("-----------")
+        print("KERAS Model")
+        print("-----------")
+        print(mode)
+        print(config)
         self.keras_model = self.build(mode=mode, config=config)
 
     def build(self, mode, config):
