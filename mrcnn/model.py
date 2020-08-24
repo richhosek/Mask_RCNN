@@ -2033,6 +2033,16 @@ class MaskRCNN():
                 [target_mask, target_class_ids, mrcnn_mask])
 
             # Model
+            print("------")
+            print("INPUTS")
+            print("------")
+            print(input_image)
+            print(input_image_meta)
+            print(input_rpn_match)
+            print(input_rpn_bbox)
+            print(input_gt_class_ids)
+            print(input_gt_boxes)
+            print(input_gt_masks)
             inputs = [input_image, input_image_meta,
                       input_rpn_match, input_rpn_bbox, input_gt_class_ids, input_gt_boxes, input_gt_masks]
             if not config.USE_RPN_ROIS:
