@@ -166,6 +166,9 @@ class VehicleDataset(utils.Dataset):
         # Convert polygons to a bitmap mask of shape
         # [height, width, instance_count]
         info = self.image_info[image_id]
+        if info["source"] != "object":
+            return super(self.__class__, self).load_mask(image_id)
+        num_ids = info['num_ids']
         mask = np.zeros([info["height"], info["width"], len(info["polygons"])],
                         dtype=np.uint8)
         for i, p in enumerate(info["polygons"]):
