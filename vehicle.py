@@ -182,7 +182,7 @@ class VehicleDataset(utils.Dataset):
         # https://medium.com/analytics-vidhya/training-your-own-data-set-using-mask-r-cnn-for-detecting-multiple-classes-3960ada85079
         # changing return type for multiple classes
         num_ids = np.array(num_ids, dtype-np.int32)
-        return mask, num_ids
+        return mask.astype(np.bool), num_ids
 
         # original code
         # return mask.astype(np.bool), np.ones([mask.shape[-1]], dtype=np.int32)
