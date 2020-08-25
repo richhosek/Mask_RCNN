@@ -138,7 +138,7 @@ class VehicleDataset(utils.Dataset):
             image = skimage.io.imread(image_path)
             height, width = image.shape[:2]
             num_ids = []
-            num_ids = append(1)
+            num_ids = num_ids.append(1)
 
             self.add_image(
                 "vehicle",
