@@ -66,7 +66,7 @@ class VehicleConfig(Config):
     IMAGES_PER_GPU = 2
 
     # Number of classes (including background)
-    NUM_CLASSES = 1 + 1  # Background + vehicle
+    NUM_CLASSES = 1 + 4  # Background + vehicle
 
     # Number of training steps per epoch
     STEPS_PER_EPOCH = 100
