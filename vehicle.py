@@ -137,14 +137,17 @@ class VehicleDataset(utils.Dataset):
             image_path = os.path.join(dataset_dir, a['filename'])
             image = skimage.io.imread(image_path)
             height, width = image.shape[:2]
+
+            # https://medium.com/analytics-vidhya/training-your-own-data-set-using-mask-r-cnn-for-detecting-multiple-classes-3960ada85079
             num_ids = []
             num_ids = num_ids.append(1)
 
             self.add_image(
-                "vehicle",
+                'vehicle',
                 image_id=a['filename'],  # use file name as a unique image id
                 path=image_path,
-                width=width, height=height,
+                width=width, 
+                height=height,
                 polygons=polygons,
                 num_ids=num_ids)
 
@@ -172,7 +175,14 @@ class VehicleDataset(utils.Dataset):
 
         # Return mask, and array of class IDs of each instance. Since we have
         # one class ID only, we return an array of 1s
-        return mask.astype(np.bool), np.ones([mask.shape[-1]], dtype=np.int32)
+
+        # https://medium.com/analytics-vidhya/training-your-own-data-set-using-mask-r-cnn-for-detecting-multiple-classes-3960ada85079
+        # changing return type for multiple classes
+        num_ids = np.array(num_ids, dtype-np.int32)
+        return mask, num_ids
+
+        # original code
+        # return mask.astype(np.bool), np.ones([mask.shape[-1]], dtype=np.int32)
 
     def image_reference(self, image_id):
         """Return the path of the image."""
