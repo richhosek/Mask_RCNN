@@ -75,6 +75,7 @@ class VehicleConfig(Config):
     DETECTION_MIN_CONFIDENCE = 0.9
 
 
+
 ############################################################
 #  Dataset
 ############################################################
@@ -88,6 +89,9 @@ class VehicleDataset(utils.Dataset):
         """
         # Add classes. We have only one class to add.
         self.add_class("vehicle", 1, "vehicle")
+        self.add_class("vehicle", 2, "pickup")
+        self.add_class("vehicle", 3, "auto")
+        self.add_class("vehicle", 4, "suv")
 
         # Train or validation dataset?
         assert subset in ["train", "val"]
@@ -133,13 +137,16 @@ class VehicleDataset(utils.Dataset):
             image_path = os.path.join(dataset_dir, a['filename'])
             image = skimage.io.imread(image_path)
             height, width = image.shape[:2]
+            num_ids = []
+            num_ids = append(1)
 
             self.add_image(
                 "vehicle",
                 image_id=a['filename'],  # use file name as a unique image id
                 path=image_path,
                 width=width, height=height,
-                polygons=polygons)
+                polygons=polygons,
+                num_ids=num_ids)
 
     def load_mask(self, image_id):
         """Generate instance masks for an image.
