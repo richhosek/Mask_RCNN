@@ -139,6 +139,9 @@ class VehicleDataset(utils.Dataset):
             height, width = image.shape[:2]
             num_ids = []
             num_ids = num_ids.append(1)
+            print("NUM IDS: load_vehicle")
+            print("---------------------")
+            print(num_ids)
 
             self.add_image(
                 'vehicle',
@@ -167,7 +170,13 @@ class VehicleDataset(utils.Dataset):
         if info["source"] != "vehicle":
             return super(self.__class__, self).load_mask(image_id)
         num_ids = info['num_ids']
+        print("NUM IDS: load_mask")
+        print("------------------")
+        print(num_ids)
         num_ids = np.array(num_ids, dtype=hp.int32)
+        print("NUM IDS: load_mask")
+        print("------------------")
+        print(num_ids)
         mask = np.zeros([info["height"], info["width"], len(info["polygons"])],
                         dtype=np.uint8)
         for i, p in enumerate(info["polygons"]):
