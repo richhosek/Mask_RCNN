@@ -66,7 +66,7 @@ class VehicleConfig(Config):
     IMAGES_PER_GPU = 2
 
     # Number of classes (including background)
-    NUM_CLASSES = 1 + 4  # Background + vehicle
+    NUM_CLASSES = 1 + 1  # Background + vehicle
 
     # Number of training steps per epoch
     STEPS_PER_EPOCH = 100
@@ -89,9 +89,9 @@ class VehicleDataset(utils.Dataset):
         """
         # Add classes. We have only one class to add.
         self.add_class("vehicle", 1, "vehicle")
-        self.add_class("vehicle", 2, "pickup")
-        self.add_class("vehicle", 3, "auto")
-        self.add_class("vehicle", 4, "suv")
+        # self.add_class("vehicle", 2, "pickup")
+        # self.add_class("vehicle", 3, "auto")
+        # self.add_class("vehicle", 4, "suv")
 
         # Train or validation dataset?
         assert subset in ["train", "val"]
@@ -137,16 +137,16 @@ class VehicleDataset(utils.Dataset):
             image_path = os.path.join(dataset_dir, a['filename'])
             image = skimage.io.imread(image_path)
             height, width = image.shape[:2]
-            num_ids = []
-            object_class = a.get('class', 'vehicle');
-            if object_class == "pickup" :
-                num_ids.append(2)
-            elif object_class == "suv" :
-                num_ids.append(3)
-            elif object_class == "auto" :
-                num_ids.append(5)
-            else :
-                num_ids.append(1)
+            # num_ids = []
+            # object_class = a.get('class', 'vehicle');
+            # if object_class == "pickup" :
+            #     num_ids.append(2)
+            # elif object_class == "suv" :
+            #     num_ids.append(3)
+            # elif object_class == "auto" :
+            #     num_ids.append(5)
+            # else :
+            #     num_ids.append(1)
 
             self.add_image(
                 'vehicle',
@@ -154,8 +154,8 @@ class VehicleDataset(utils.Dataset):
                 path=image_path,
                 width=width, 
                 height=height,
-                polygons=polygons,
-                num_ids=num_ids)
+                polygons=polygons #, num_ids=num_ids
+                )
 
     def load_mask(self, image_id):
         """Generate instance masks for an image.
@@ -174,8 +174,8 @@ class VehicleDataset(utils.Dataset):
         info = self.image_info[image_id]
         if info["source"] != "vehicle":
             return super(self.__class__, self).load_mask(image_id)
-        num_ids = info['num_ids']
-        num_ids = np.array(num_ids, dtype=np.int32)
+        # num_ids = info['num_ids']
+        # num_ids = np.array(num_ids, dtype=np.int32)
         mask = np.zeros([info["height"], info["width"], len(info["polygons"])],
                         dtype=np.uint8)
         for i, p in enumerate(info["polygons"]):
@@ -185,7 +185,7 @@ class VehicleDataset(utils.Dataset):
 
         # Return mask, and array of class IDs of each instance. Since we have
         # one class ID only, we return an array of 1s
-        return mask.astype(np.bool), num_ids # np.ones([mask.shape[-1]], dtype=np.int32)
+        return mask.astype(np.bool), np.ones([mask.shape[-1]], dtype=np.int32)
 
     def image_reference(self, image_id):
         """Return the path of the image."""
