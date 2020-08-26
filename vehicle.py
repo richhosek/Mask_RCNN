@@ -142,7 +142,7 @@ class VehicleDataset(utils.Dataset):
                 num_ids.append(2)
             elif a['class'] == "suv" :
                 num_ids.append(3)
-            if a['class'] == "auto" :
+            elif a['class'] == "auto" :
                 num_ids.append(5)
             else :
                 num_ids.append(1)
