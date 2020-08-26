@@ -138,8 +138,11 @@ class VehicleDataset(utils.Dataset):
             image = skimage.io.imread(image_path)
             height, width = image.shape[:2]
             num_ids = []
+            print("NUM IDS: load_vehicle 1")
+            print("---------------------")
+            print(num_ids)
             num_ids = num_ids.append(1)
-            print("NUM IDS: load_vehicle")
+            print("NUM IDS: load_vehicle 2")
             print("---------------------")
             print(num_ids)
 
@@ -170,11 +173,11 @@ class VehicleDataset(utils.Dataset):
         if info["source"] != "vehicle":
             return super(self.__class__, self).load_mask(image_id)
         num_ids = info['num_ids']
-        print("NUM IDS: load_mask")
+        print("NUM IDS: load_mask 1")
         print("------------------")
         print(num_ids)
         num_ids = np.array(num_ids, dtype=np.int32)
-        print("NUM IDS: load_mask")
+        print("NUM IDS: load_mask 2")
         print("------------------")
         print(num_ids)
         mask = np.zeros([info["height"], info["width"], len(info["polygons"])],
