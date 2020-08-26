@@ -138,7 +138,14 @@ class VehicleDataset(utils.Dataset):
             image = skimage.io.imread(image_path)
             height, width = image.shape[:2]
             num_ids = []
-            num_ids.append(1)
+            if a['class'] == "pickup"
+                num_ids.append(2)
+            elif a['class'] == "suv"
+                num_ids.append(3)
+            if a['class'] == "auto"
+                num_ids.append(5)
+            else
+                num_ids.append(1)
 
             self.add_image(
                 'vehicle',
