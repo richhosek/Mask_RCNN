@@ -141,7 +141,7 @@ class VehicleDataset(utils.Dataset):
             print("NUM IDS: load_vehicle 1")
             print("---------------------")
             print(num_ids)
-            num_ids = num_ids.append(1)
+            num_ids.append(1)
             print("NUM IDS: load_vehicle 2")
             print("---------------------")
             print(num_ids)
