@@ -173,7 +173,7 @@ class VehicleDataset(utils.Dataset):
         print("NUM IDS: load_mask")
         print("------------------")
         print(num_ids)
-        num_ids = np.array(num_ids, dtype=hp.int32)
+        num_ids = np.array(num_ids, dtype=np.int32)
         print("NUM IDS: load_mask")
         print("------------------")
         print(num_ids)
