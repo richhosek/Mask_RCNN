@@ -230,7 +230,7 @@ def train(model):
                 learning_rate=config.LEARNING_RATE/10,
                 epochs=300,
                 augmentation=augmentation,
-                layers='all')`
+                layers='all')
 
 
 def color_splash(image, mask):
