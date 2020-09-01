@@ -28,6 +28,7 @@ def _parse_requirements(file_path):
 try:
     install_reqs = _parse_requirements("requirements.txt")
 except Exception:
+    logging.error(Exception)
     logging.warning('Fail load requirements file, so using default ones.')
     install_reqs = []
 

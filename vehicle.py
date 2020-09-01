@@ -35,7 +35,7 @@ import numpy as np
 import skimage.draw
 
 # Root directory of the project
-ROOT_DIR = os.path.abspath("../../")
+ROOT_DIR = os.path.abspath(".")
 
 # Import Mask RCNN
 sys.path.append(ROOT_DIR)  # To find local version of the library
@@ -139,11 +139,11 @@ class VehicleDataset(utils.Dataset):
             height, width = image.shape[:2]
             num_ids = []
             object_class = a.get('class', 'vehicle');
-            if object_class == "pickup" :
+            if object_class.lower() == "pickup" :
                 num_ids.append(2)
-            elif object_class == "suv" :
+            elif object_class.lower() == "suv" :
                 num_ids.append(3)
-            elif object_class == "auto" :
+            elif object_class.lower() == "auto" :
                 num_ids.append(4)
             else :
                 num_ids.append(1)
@@ -215,22 +215,22 @@ def train(model):
     print("Training network heads")
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE,
-                epochs=30,
-                # epochs=5,
-                    layers='heads')
+                # epochs=30,
+                epochs=5,
+                layers='heads')
     # Finetune layers from ResNet stage 4 and up
-    print("Fine tune Resnet stage 4 and up")
-    model.train(dataset_train, dataset_val,
-                learning_rate=config.LEARNING_RATE,
-                epochs=120,
-                layers='4+')
+    # print("Fine tune Resnet stage 4 and up")
+    # model.train(dataset_train, dataset_val,
+    #             learning_rate=config.LEARNING_RATE,
+    #             epochs=120,
+    #             layers='4+')
 
-    print("Train all layers")
-    model.train(dataset_train, dataset_val,
-                learning_rate=config.LEARNING_RATE/10,
-                epochs=300,
-                augmentation=augmentation,
-                layers='all')
+    # print("Train all layers")
+    # model.train(dataset_train, dataset_val,
+    #             learning_rate=config.LEARNING_RATE/10,
+    #             epochs=300,
+    #             augmentation=augmentation,
+    #             layers='all')
 
 
 def color_splash(image, mask):
