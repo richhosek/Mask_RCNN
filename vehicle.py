@@ -33,6 +33,7 @@ import json
 import datetime
 import numpy as np
 import skimage.draw
+import imgaug  # https://github.com/aleju/imgaug (pip3 install imgaug)
 
 # Root directory of the project
 ROOT_DIR = os.path.abspath("../../")
@@ -229,7 +230,10 @@ def train(model):
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE/10,
                 epochs=300,
-                augmentation=augmentation,
+                augmentation=imgaug.augmenters.Sequential([ 
+                imgaug.augmenters.Affine(rotate=(-5, 5)), 
+                imgaug.augmenters.Affine(rotate=(-9, 9)), 
+                imgaug.augmenters.Affine(scale=(0.5, 1.5))]),
                 layers='all')
 
 
