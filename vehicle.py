@@ -226,15 +226,15 @@ def train(model):
                 epochs=120,
                 layers='4+')
 
-    print("Train all layers")
-    model.train(dataset_train, dataset_val,
-                learning_rate=config.LEARNING_RATE/10,
-                epochs=300,
-                augmentation=imgaug.augmenters.Sequential([ 
-                imgaug.augmenters.Affine(rotate=(-5, 5)), 
-                imgaug.augmenters.Affine(rotate=(-9, 9)), 
-                imgaug.augmenters.Affine(scale=(0.5, 1.5))]),
-                layers='all')
+    # print("Train all layers")
+    # model.train(dataset_train, dataset_val,
+    #             learning_rate=config.LEARNING_RATE/10,
+    #             epochs=300,
+    #             augmentation=imgaug.augmenters.Sequential([ 
+    #             imgaug.augmenters.Affine(rotate=(-5, 5)), 
+    #             imgaug.augmenters.Affine(rotate=(-9, 9)), 
+    #             imgaug.augmenters.Affine(scale=(0.5, 1.5))]),
+    #             layers='all')
 
 
 def color_splash(image, mask):
