@@ -215,22 +215,22 @@ def train(model):
     print("Training network heads")
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE,
-                # epochs=30,
-                epochs=5,
+                epochs=30,
+                # epochs=5,
                 layers='heads')
     # Finetune layers from ResNet stage 4 and up
-    # print("Fine tune Resnet stage 4 and up")
-    # model.train(dataset_train, dataset_val,
-    #             learning_rate=config.LEARNING_RATE,
-    #             epochs=120,
-    #             layers='4+')
+    print("Fine tune Resnet stage 4 and up")
+    model.train(dataset_train, dataset_val,
+                learning_rate=config.LEARNING_RATE,
+                epochs=120,
+                layers='4+')
 
-    # print("Train all layers")
-    # model.train(dataset_train, dataset_val,
-    #             learning_rate=config.LEARNING_RATE/10,
-    #             epochs=300,
-    #             augmentation=augmentation,
-    #             layers='all')
+    print("Train all layers")
+    model.train(dataset_train, dataset_val,
+                learning_rate=config.LEARNING_RATE/10,
+                epochs=300,
+                augmentation=augmentation,
+                layers='all')
 
 
 def color_splash(image, mask):
