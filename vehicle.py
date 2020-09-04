@@ -218,7 +218,8 @@ def train(model):
                 learning_rate=config.LEARNING_RATE,
                 epochs=100,
                 # epochs=5,
-                layers='heads')
+                # layers='heads')
+                layers='all')
     # # Finetune layers from ResNet stage 4 and up
     # print("Fine tune Resnet stage 4 and up")
     # model.train(dataset_train, dataset_val,
