@@ -143,9 +143,9 @@ class VehicleDataset(utils.Dataset):
             if object_class.lower() == "pickup" :
                 num_ids.append(2)
             elif object_class.lower() == "suv" :
-                num_ids.append(3)
-            elif object_class.lower() == "auto" :
                 num_ids.append(4)
+            elif object_class.lower() == "auto" :
+                num_ids.append(3)
             else :
                 num_ids.append(1)
 
@@ -216,15 +216,15 @@ def train(model):
     print("Training network heads")
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE,
-                epochs=30,
+                epochs=100,
                 # epochs=5,
                 layers='heads')
-    # Finetune layers from ResNet stage 4 and up
-    print("Fine tune Resnet stage 4 and up")
-    model.train(dataset_train, dataset_val,
-                learning_rate=config.LEARNING_RATE,
-                epochs=120,
-                layers='4+')
+    # # Finetune layers from ResNet stage 4 and up
+    # print("Fine tune Resnet stage 4 and up")
+    # model.train(dataset_train, dataset_val,
+    #             learning_rate=config.LEARNING_RATE,
+    #             epochs=120,
+    #             layers='4+')
 
     # print("Train all layers")
     # model.train(dataset_train, dataset_val,
