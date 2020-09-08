@@ -216,7 +216,7 @@ def train(model):
     print("Training network heads")
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE,
-                epochs=100,
+                epochs=50,
                 # epochs=5,
                 # layers='heads')
                 layers='all')
