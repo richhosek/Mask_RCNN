@@ -236,6 +236,7 @@ def train(model):
     #             imgaug.augmenters.Affine(rotate=(-9, 9)), 
     #             imgaug.augmenters.Affine(scale=(0.5, 1.5))]),
     #             layers='all')
+    model.keras_model.save("/logs/vehicle_trained.h5")
 
 
 def color_splash(image, mask):
@@ -401,7 +402,6 @@ if __name__ == '__main__':
     # Train or evaluate
     if args.command == "train":
         train(model)
-        model.keras_model.save("/logs/vehicle_trained.h5")
     elif args.command == "splash":
         detect_and_color_splash(model, image_path=args.image,
                                 video_path=args.video)
