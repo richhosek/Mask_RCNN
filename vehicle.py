@@ -216,10 +216,10 @@ def train(model):
     print("Training network heads")
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE,
-                epochs=50,
-                # epochs=5,
-                # layers='heads')
-                layers='all')
+                # epochs=50,
+                epochs=5,
+                layers='heads')
+                # layers='all')
     # # Finetune layers from ResNet stage 4 and up
     # print("Fine tune Resnet stage 4 and up")
     # model.train(dataset_train, dataset_val,
@@ -401,6 +401,7 @@ if __name__ == '__main__':
     # Train or evaluate
     if args.command == "train":
         train(model)
+        model.keras_model.save("vehicle_trained.h5")
     elif args.command == "splash":
         detect_and_color_splash(model, image_path=args.image,
                                 video_path=args.video)
