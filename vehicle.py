@@ -217,9 +217,8 @@ def train(model):
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE,
                 epochs=5,
+                # epochs=5,
                 layers='heads')
-                # epochs=50,
-                # layers='all')
     # # Finetune layers from ResNet stage 4 and up
     # print("Fine tune Resnet stage 4 and up")
     # model.train(dataset_train, dataset_val,
@@ -236,7 +235,6 @@ def train(model):
     #             imgaug.augmenters.Affine(rotate=(-9, 9)), 
     #             imgaug.augmenters.Affine(scale=(0.5, 1.5))]),
     #             layers='all')
-    # model.keras_model.save("/logs/vehicle_trained.h5")
 
 
 def color_splash(image, mask):
